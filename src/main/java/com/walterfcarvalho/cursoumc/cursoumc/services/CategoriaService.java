@@ -1,5 +1,6 @@
 package com.walterfcarvalho.cursoumc.cursoumc.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.hibernate.ObjectNotFoundException;
@@ -23,5 +24,16 @@ public class CategoriaService {
                 "Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName(), obj));
 
     }
+
+    public List<Categoria> buscarAll() {
+    
+        Optional<List<Categoria>> obj = Optional.ofNullable(repo.findAll());
+        return obj.orElseThrow(
+            () -> new ObjectNotFoundException(
+                "Empty list", obj));
+
+    }
+
+
 
 }

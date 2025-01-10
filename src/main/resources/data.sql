@@ -1,0 +1,2 @@
+
+-- INSERT CATEGORIA([NOME]) VALUES ( '1')

@@ -7,27 +7,27 @@ import org.hibernate.ObjectNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.walterfcarvalho.cursoumc.cursoumc.domain.Categoria;
-import com.walterfcarvalho.cursoumc.cursoumc.repositories.CategoriaRepository;
+import com.walterfcarvalho.cursoumc.cursoumc.domain.Cliente;
+import com.walterfcarvalho.cursoumc.cursoumc.repositories.ClienteRepository;
 
 @Service
-public class CategoriaService {
+public class ClienteService {
 
     // instancia automaticamente o objeto
     @Autowired
-    private CategoriaRepository repo;
+    private ClienteRepository repo;
 
-    public Categoria buscar(Integer id) {
-        Optional<Categoria> obj = repo.findById(id);
+    public Cliente buscar(Integer id) {
+        Optional<Cliente> obj = repo.findById(id);
         return obj.orElseThrow(
             () -> new ObjectNotFoundException(
-                "Objeto não encontrado! Id: " + id + ", Tipo: " + Categoria.class.getName(), obj));
+                "Objeto não encontrado! Id: " + id + ", Tipo: " + Cliente.class.getName(), obj));
 
     }
 
-    public List<Categoria> buscarAll() {
+    public List<Cliente> buscarAll() {
     
-        Optional<List<Categoria>> obj = Optional.ofNullable(repo.findAll());
+        Optional<List<Cliente>> obj = Optional.ofNullable(repo.findAll());
         return obj.orElseThrow(
             () -> new ObjectNotFoundException(
                 "Empty list", obj));

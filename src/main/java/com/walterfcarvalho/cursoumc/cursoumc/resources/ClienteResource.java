@@ -2,8 +2,8 @@ package com.walterfcarvalho.cursoumc.cursoumc.resources;
 
 
 import org.springframework.web.bind.annotation.RestController;
-import com.walterfcarvalho.cursoumc.cursoumc.domain.Categoria;
-import com.walterfcarvalho.cursoumc.cursoumc.services.CategoriaService;
+import com.walterfcarvalho.cursoumc.cursoumc.domain.Cliente;
+import com.walterfcarvalho.cursoumc.cursoumc.services.ClienteService;
 
 import java.util.List;
 
@@ -17,17 +17,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 // anotation for a new controllers
 @RestController
-@RequestMapping(value="/categorias")
+@RequestMapping(value="/clientes")
 
-public class CategoriaResource {
+public class ClienteResource {
     
     @Autowired
-    private CategoriaService categoriaService;
+    private ClienteService ClienteService;
 
     @RequestMapping(value="/{id}",  method=RequestMethod.GET)
     public ResponseEntity<?> find(@PathVariable Integer id) {
 
-        Categoria obj = categoriaService.buscar(id);
+        Cliente obj = ClienteService.buscar(id);
                             
         return ResponseEntity.ok().body(obj);
     }
@@ -40,7 +40,7 @@ public class CategoriaResource {
     @RequestMapping(value="/", method=RequestMethod.GET)
     public ResponseEntity<?> findAll2(@RequestParam String catName ) {
 
-        List<Categoria> obj = categoriaService.buscarAll();
+        List<Cliente> obj = ClienteService.buscarAll();
                             
         return ResponseEntity.ok().body(obj);
     }

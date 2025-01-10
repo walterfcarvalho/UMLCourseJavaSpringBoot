@@ -25,7 +25,7 @@ public class Categoria implements Serializable {
         return serialVersionUID;
     }
 
-    @Column( length = 40, name = "name")
+    @Column( length = 40)
     private String nome;
 
     @JsonManagedReference // retorna os produtos da categoria

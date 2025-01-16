@@ -15,12 +15,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
+
 // anotation for a new controllers
 @RestController
 @RequestMapping(value="/categorias")
 
 public class CategoriaResource {
-    
+
     @Autowired
     private CategoriaService categoriaService;
 

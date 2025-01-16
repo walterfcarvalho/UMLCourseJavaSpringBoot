@@ -2,7 +2,9 @@ package com.walterfcarvalho.cursoumc.cursoumc.domain;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+// import java.util.HashSet;
 import java.util.List;
+// import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
@@ -13,25 +15,25 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Produto implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nome;
     private double preco;
-     
+
     @JsonBackReference // omite as categorias do produto
     @ManyToMany
-    @JoinTable(
-        name = "PRODUTO_CATEGORIA",
-        joinColumns = @JoinColumn(name="produto_id"),
-        inverseJoinColumns = @JoinColumn(name="categoria_id")
-    )
+    @JoinTable(name = "PRODUTO_CATEGORIA", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "categoria_id"))
     private List<Categoria> categorias = new ArrayList<Categoria>();
+
+    @OneToMany( mappedBy = "id.produto")
+    private List<ItemPedido> itensPedidos = new ArrayList<>(); // lista que nao permite repetir item
 
     public Produto() {
     }
@@ -40,6 +42,15 @@ public class Produto implements Serializable {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
+    }
+
+    public List<Pedido> getPedidos() {
+        List<Pedido> listaPedidos = new ArrayList<>();
+
+        for ( ItemPedido it : this.itensPedidos ) {
+            listaPedidos.add(it.getPedido());
+        }
+        return listaPedidos;
     }
 
     public Integer getId() {
@@ -82,6 +93,14 @@ public class Produto implements Serializable {
         return result;
     }
 
+    public List<ItemPedido> getItensPedidos() {
+        return this.itensPedidos;
+    }
+
+    public void setItensPedidos(List<ItemPedido> itens) {
+        this.itensPedidos = itens;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -99,8 +118,5 @@ public class Produto implements Serializable {
         return true;
     }
 
-
-    
-
-
 }
+//61

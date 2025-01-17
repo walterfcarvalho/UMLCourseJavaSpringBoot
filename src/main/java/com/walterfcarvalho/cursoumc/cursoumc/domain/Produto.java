@@ -7,6 +7,7 @@ import java.util.List;
 // import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,6 +33,7 @@ public class Produto implements Serializable {
     @JoinTable(name = "PRODUTO_CATEGORIA", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "categoria_id"))
     private List<Categoria> categorias = new ArrayList<Categoria>();
 
+    @JsonIgnore
     @OneToMany( mappedBy = "id.produto")
     private List<ItemPedido> itensPedidos = new ArrayList<>(); // lista que nao permite repetir item
 
@@ -39,11 +41,13 @@ public class Produto implements Serializable {
     }
 
     public Produto(Integer id, String nome, double preco) {
+        super();
         this.id = id;
         this.nome = nome;
         this.preco = preco;
     }
 
+    @JsonIgnore
     public List<Pedido> getPedidos() {
         List<Pedido> listaPedidos = new ArrayList<>();
 
@@ -85,20 +89,22 @@ public class Produto implements Serializable {
         this.categorias = categorias;
     }
 
+    
+    @JsonIgnore
+    public List<ItemPedido> getItensPedidos() {
+        return this.itensPedidos;
+    }
+    
+    public void setItensPedidos(List<ItemPedido> itens) {
+        this.itensPedidos = itens;
+    }
+     
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((id == null) ? 0 : id.hashCode());
         return result;
-    }
-
-    public List<ItemPedido> getItensPedidos() {
-        return this.itensPedidos;
-    }
-
-    public void setItensPedidos(List<ItemPedido> itens) {
-        this.itensPedidos = itens;
     }
 
     @Override
@@ -112,11 +118,10 @@ public class Produto implements Serializable {
         Produto other = (Produto) obj;
         if (id == null) {
             if (other.id != null)
-                return false;
+            return false;
         } else if (!id.equals(other.id))
             return false;
         return true;
     }
-
+    
 }
-//61

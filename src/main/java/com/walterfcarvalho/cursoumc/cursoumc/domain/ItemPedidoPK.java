@@ -18,6 +18,22 @@ public class ItemPedidoPK implements Serializable {
     @JoinColumn(name = "produto_id" )
     Produto produto;
 
+    public Pedido getPedido() {
+        return pedido;
+    }
+
+    public void setPedido(Pedido pedido) {
+        this.pedido = pedido;
+    }
+
+    public Produto getProduto() {
+        return produto;
+    }
+
+    public void setProduto(Produto produto) {
+        this.produto = produto;
+    }
+
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -47,22 +63,6 @@ public class ItemPedidoPK implements Serializable {
         } else if (!produto.equals(other.produto))
             return false;
         return true;
-    }
-
-    public Pedido getPedido() {
-        return pedido;
-    }
-
-    public void setPedido(Pedido pedido) {
-        this.pedido = pedido;
-    }
-
-    public Produto getProduto() {
-        return produto;
-    }
-
-    public void setProduto(Produto produto) {
-        this.produto = produto;
     }
 
 }

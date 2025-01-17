@@ -64,34 +64,36 @@ public class CursoumcApplication implements CommandLineRunner {
 	public static void main(String[] args) {
 
 		SpringApplication.run(CursoumcApplication.class, args);
-
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
+		this.execCommand();
+	}
+	
+	public void execCommand() throws Exception  {
 
+		Produto prod1 = new Produto(null, "Computador", 1999);
+		Produto prod2 = new Produto(null, "Impressora", 799);
+		Produto prod3 = new Produto(null, "Mouse", 99);
 
-		Produto p1 = new Produto(null, "Computador", 1999);
-		Produto p2 = new Produto(null, "Impressora", 799);
-		Produto p3 = new Produto(null, "Mouse", 99);
-
-		Categoria c1 = new Categoria(null, "informatica");
-		Categoria c2 = new Categoria(null, "escritório");
+		Categoria cat1 = new Categoria(null, "informatica");
+		Categoria cat2 = new Categoria(null, "escritório");
 		if (produtoRepository.count() < 1 && categoriaRepository.count() < 1) {
 
-			produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
+			produtoRepository.saveAll(Arrays.asList(prod1, prod2, prod3));
 
-			categoriaRepository.saveAll(Arrays.asList(c1, c2));
+			categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
 
-			p1.getCategorias().addAll(Arrays.asList(c1));
-			p2.getCategorias().addAll(Arrays.asList(c1, c2));
-			p3.getCategorias().addAll(Arrays.asList(c1));
+			prod1.getCategorias().addAll(Arrays.asList(cat1));
+			prod2.getCategorias().addAll(Arrays.asList(cat1, cat2));
+			prod3.getCategorias().addAll(Arrays.asList(cat1));
 
-			c1.getProdutos().addAll(Arrays.asList(p1, p2, p3));
-			c2.getProdutos().addAll(Arrays.asList(p2));
+			cat1.getProdutos().addAll(Arrays.asList(prod1, prod2, prod3));
+			cat2.getProdutos().addAll(Arrays.asList(prod2));
 
-			produtoRepository.saveAll(Arrays.asList(p1, p2, p3));
-			categoriaRepository.saveAll(Arrays.asList(c1, c2));
+			produtoRepository.saveAll(Arrays.asList(prod1, prod2, prod3));
+			categoriaRepository.saveAll(Arrays.asList(cat1, cat2));
 		}
 
 		// estados
@@ -140,33 +142,27 @@ public class CursoumcApplication implements CommandLineRunner {
 		ped1.setPagamento(pagto1);
 		ped2.setPagamento(pagto2);
 
-		ItemPedido ip1 = new ItemPedido(ped1, p1, 0.00, 1, 1.00);
-		ItemPedido ip2 = new ItemPedido(ped2, p2, 0.00, 2, 1.00);
-		ItemPedido ip3 = new ItemPedido(ped2, p3, 0.00, 2, 1.00);
+		ItemPedido iprod1 = new ItemPedido(ped1, prod1, 0.00, 1, 1.00);
+		ItemPedido iprod2 = new ItemPedido(ped2, prod2, 0.00, 2, 1.00);
+		ItemPedido iprod3 = new ItemPedido(ped2, prod3, 0.00, 2, 1.00);
 
-		ped1.getItens().addAll(Arrays.asList(ip1, ip2));
-		ped2.getItens().addAll(Arrays.asList(ip3));
+		ped1.getItens().addAll(Arrays.asList(iprod1, iprod2));
+		ped2.getItens().addAll(Arrays.asList(iprod3));
 
-		p1.getItensPedidos().addAll(Arrays.asList(ip1));
-		p2.getItensPedidos().addAll(Arrays.asList(ip1));
-		
-		p3.getItensPedidos().addAll(Arrays.asList(ip2));
-
+		prod1.getItensPedidos().addAll(Arrays.asList(iprod1));
+		prod2.getItensPedidos().addAll(Arrays.asList(iprod1));	
+		prod3.getItensPedidos().addAll(Arrays.asList(iprod2));
 
 		if ( pedidoRepository.count() < 1) {
 
 			pedidoRepository.saveAll( Arrays.asList(ped1, ped2) );
 
-			itemPedidoRepository.saveAll( Arrays.asList(ip1, ip2,ip3));
+			itemPedidoRepository.saveAll( Arrays.asList(iprod1, iprod2, iprod3));
 
 			pagamentoRepository.saveAll(Arrays.asList(pagto1, pagto2));
-
 		}
-
 
 		System.out.println("=====================  ==> Run finished");
 	}
 
-
-
-}
+}     

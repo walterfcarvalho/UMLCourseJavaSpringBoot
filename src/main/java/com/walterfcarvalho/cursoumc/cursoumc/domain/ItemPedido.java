@@ -2,6 +2,8 @@ package com.walterfcarvalho.cursoumc.cursoumc.domain;
 
 import java.io.Serializable;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 
@@ -9,6 +11,7 @@ import jakarta.persistence.Entity;
 public class ItemPedido implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    @JsonIgnore
     @EmbeddedId
     ItemPedidoPK id = new ItemPedidoPK(); 
 
@@ -60,10 +63,12 @@ public class ItemPedido implements Serializable {
         this.id = id;
     }
 
+    @JsonIgnore
     public Pedido getPedido(){
         return this.id.pedido;
     }
-
+    
+    // @JsonIgnore
     public Produto getProduto(){
         return this.id.produto;
     }
@@ -93,7 +98,7 @@ public class ItemPedido implements Serializable {
         return true;
     }
 
-
+    
 
     
 }

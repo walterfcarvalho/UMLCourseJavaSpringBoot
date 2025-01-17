@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 public class PagamentoCartao extends Pagamento {
     private static final long serialVersionUID = 1L;
 
+    private static final String tipo = "Cartao";
+
     private Integer parcelas;
 
     public PagamentoCartao() {
@@ -21,6 +23,10 @@ public class PagamentoCartao extends Pagamento {
     public PagamentoCartao(Integer parcelas) {
         super();
         this.parcelas = parcelas;
+    }
+
+    public String getTipo(){
+        return tipo;
     }
 
     public Integer getParcelas() {

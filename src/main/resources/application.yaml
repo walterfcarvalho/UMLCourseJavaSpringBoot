@@ -1,14 +1,32 @@
-spring.application.name=cursoumc
-server.port=${port:3000}
+server:
+    port: ${port:3000}
+
+spring:
+    application:
+        name: cursoumc
+
+    # config to pretty print json no navegado 
+    jackson:
+        serialization:
+            indent-output: true
+
+    profiles: # prd dev
+        active: dev
+        default: dev
 
 
-spring.datasource.driverClassName=com.microsoft.sqlserver.jdbc.SQLServerDriver
-spring.datasource.url=jdbc:sqlserver://;serverName=localhost;databaseName=cursouml;encrypt=false
-spring.datasource.username=sa
-spring.datasource.password=Xeon123
-spring.jpa.show-sql=true
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.properties.hibernate.format_sql=true
+    # datasource:
+    #     driverClassName: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    #     url: jdbc:sqlserver://;serverName=localhost;databaseName=cursouml;encrypt=false
+    #     username: sa
+    #     password: Xeon123
+
+    # jpa:
+    #     show-sql: true
+    
+    #     hibernate:
+    #         ddl-auto: update
+    #         # format_sql: true
 
 # essa chave para recriar a estrutura do bd em cada inicializacao
 # spring.jpa.hibernate.ddl-auto=create-drop

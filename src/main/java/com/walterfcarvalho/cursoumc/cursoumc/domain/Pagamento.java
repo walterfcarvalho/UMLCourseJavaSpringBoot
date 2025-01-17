@@ -9,6 +9,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.MapsId;
 import jakarta.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.walterfcarvalho.cursoumc.cursoumc.domain.enums.EstadoPagamento;
 
 @Entity
@@ -19,6 +20,7 @@ public abstract class Pagamento  implements Serializable {
     @Id
     private Integer id;
     
+    @JsonBackReference
     @OneToOne
     @JoinColumn(name="pedido_id")
     @MapsId

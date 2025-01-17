@@ -2,10 +2,8 @@ package com.walterfcarvalho.cursoumc.cursoumc.resources;
 
 
 import org.springframework.web.bind.annotation.RestController;
-import com.walterfcarvalho.cursoumc.cursoumc.domain.Categoria;
-import com.walterfcarvalho.cursoumc.cursoumc.services.CategoriaService;
-
-import io.micrometer.common.lang.Nullable;
+import com.walterfcarvalho.cursoumc.cursoumc.domain.Pedido;
+import com.walterfcarvalho.cursoumc.cursoumc.services.PedidoService;
 
 import java.util.List;
 
@@ -20,17 +18,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 // anotation for a new controllers
 @RestController
-@RequestMapping(value="/categorias")
+@RequestMapping(value="/pedidos")
 
-public class CategoriaResource {
+public class PedidoResource {
 
     @Autowired
-    private CategoriaService categoriaService;
+    private PedidoService PedidoService;
 
     @RequestMapping(value="/{id}",  method=RequestMethod.GET)
     public ResponseEntity<?> find(@PathVariable Integer id) {
 
-        Categoria obj = categoriaService.buscar(id);
+        Pedido obj = PedidoService.buscar(id);
                             
         return ResponseEntity.ok().body(obj);
     }
@@ -41,9 +39,9 @@ public class CategoriaResource {
     }
 
     @RequestMapping(value="/", method=RequestMethod.GET)
-    public ResponseEntity<?> findAll2(@RequestParam @Nullable String catName ) {
+    public ResponseEntity<?> findAll2(@RequestParam String catName ) {
 
-        List<Categoria> obj = categoriaService.buscarAll();
+        List<Pedido> obj = PedidoService.buscarAll();
                             
         return ResponseEntity.ok().body(obj);
     }

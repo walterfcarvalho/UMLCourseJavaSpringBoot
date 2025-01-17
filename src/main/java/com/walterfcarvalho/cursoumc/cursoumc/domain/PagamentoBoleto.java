@@ -10,6 +10,7 @@ import jakarta.persistence.Entity;
 public class PagamentoBoleto extends Pagamento {
     private static final long serialVersionUID = 1L;
 
+    private static final String tipo = "Boleto";
     private Date dataVencimento;
     private Date dataPagamento;
 
@@ -20,6 +21,10 @@ public class PagamentoBoleto extends Pagamento {
         super(id, estado, pedido);
         this.dataVencimento = dataVencimento;
         this.dataPagamento = dataPagamento;
+    }
+
+    public String getTipo(){
+        return tipo;
     }
 
     public Date getDataVencimento() {

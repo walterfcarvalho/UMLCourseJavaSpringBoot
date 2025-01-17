@@ -4,8 +4,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -28,7 +26,7 @@ public class Categoria implements Serializable {
     @Column( length = 40)
     private String nome;
 
-    @JsonManagedReference // retorna os produtos da categoria
+    // @JsonManagedReference // retorna os produtos da categoria
     @ManyToMany(mappedBy = "categorias")   // nome do campo
     private List<Produto> produtos = new ArrayList<Produto>();
 

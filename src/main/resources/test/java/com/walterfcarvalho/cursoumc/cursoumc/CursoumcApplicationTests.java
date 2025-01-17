@@ -1,4 +1,4 @@
-package com.walterfcarvalho.cursoumc.cursoumc;
+package com.walterfcarvalho.cursoumc;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

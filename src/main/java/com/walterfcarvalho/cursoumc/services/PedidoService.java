@@ -27,6 +27,8 @@ public class PedidoService {
 
     public List<Pedido> buscarAll() {
     
+    
+
         Optional<List<Pedido>> obj = Optional.ofNullable(repo.findAll());
         return obj.orElseThrow(
             () -> new ObjectNotFoundException(

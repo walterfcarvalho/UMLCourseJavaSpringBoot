@@ -38,9 +38,9 @@ public class ClienteResource {
     }
 
     @RequestMapping(value="/", method=RequestMethod.GET)
-    public ResponseEntity<?> findAll2(@RequestParam String catName ) {
+    public ResponseEntity<?> findAll2(@RequestParam String nome ) {
 
-        List<Cliente> obj = ClienteService.buscarAll();
+        List<Cliente> obj = ClienteService.buscarByNome(nome);
                             
         return ResponseEntity.ok().body(obj);
     }

@@ -33,4 +33,18 @@ public class ClienteService {
                 "Empty list", obj));
 
     }
+
+    public List<Cliente> buscarByNome(String nome) {
+    
+        Optional<List<Cliente>> obj = Optional.ofNullable(repo.findByNome(nome));
+        return obj.orElseThrow(
+            () -> new ObjectNotFoundException(
+                "Empty list", obj));
+
+    }
+
+
+
+
+
 }
